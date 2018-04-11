@@ -1,0 +1,8 @@
+{
+  "name": "simplebip",
+  "app_id": "cf4e9cba",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}

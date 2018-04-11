@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Simple Bip!</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-input type="number" placeholder="Ingrese Numero Tarjeta Bip!" name="bip" id="bip" [(ngModel)]="bip"></ion-input>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <button (click)="buscarDatos()" ion-button full>Buscar</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+   <ion-list>
+    <ion-item-sliding *ngFor="let tarjeta of bip_storage">
+      <button ion-item (click)="openItem(tarjeta)">
+        <h2>{{tarjeta.id}}</h2>
+        <p>{{tarjeta.saldoTarjeta}}</p>
+      </button>
+
+      <ion-item-options>
+        <button ion-button color="danger" (click)="deleteItem(tarjeta.id_hash)">
+          Quitar
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+  
+
+  <ion-grid>
+    <ion-row>
+      {{ mensaje_sistema }}
+    </ion-row>
+  </ion-grid>
+
+  <ion-footer>
+    <button *ngIf="total_tarjetas > 0" ion-button full (click)="clearAll()" color="danger">Limpiar todo</button>
+  </ion-footer>
+</ion-content>
