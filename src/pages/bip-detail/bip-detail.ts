@@ -4,6 +4,7 @@ import { ApiProvider, BipInterface } from '../../providers/api/api';
 import { Storage } from '@ionic/storage';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Md5 } from 'ts-md5/dist/md5';
+import { MessageProvider } from '../../providers/message/message';
 
 /**
  * Generated class for the BipDetailPage page.
@@ -36,6 +37,7 @@ export class BipDetailPage {
   	, public api: ApiProvider
   	, public storage: Storage
   	, private splashScreen: SplashScreen
+    , private messenger: MessageProvider
   	) {
 
   	this.item = navParams.get('item') || {};
@@ -83,7 +85,8 @@ export class BipDetailPage {
   						)
   			},
   			error => {
-  				console.log(error)
+          this.splashScreen.hide();
+          this.messenger.print('El número ingresado no existe o no es válido');
   				this.navCtrl.pop();
   			}
 			)

@@ -1,14 +1,14 @@
 webpackJsonp([0],{
 
-/***/ 284:
+/***/ 285:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BipDetailPageModule", function() { return BipDetailPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__bip_detail__ = __webpack_require__(286);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__bip_detail__ = __webpack_require__(287);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -38,16 +38,17 @@ var BipDetailPageModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 286:
+/***/ 287:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BipDetailPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_api_api__ = __webpack_require__(100);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(101);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_splash_screen__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_message_message__ = __webpack_require__(103);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -62,6 +63,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 /**
  * Generated class for the BipDetailPage page.
  *
@@ -69,13 +71,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Ionic pages and navigation.
  */
 var BipDetailPage = /** @class */ (function () {
-    function BipDetailPage(navCtrl, navParams, api, storage, splashScreen) {
+    function BipDetailPage(navCtrl, navParams, api, storage, splashScreen, messenger) {
         var _this = this;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.api = api;
         this.storage = storage;
         this.splashScreen = splashScreen;
+        this.messenger = messenger;
         this.bip_response = {
             estadoContrato: '',
             fechaSaldo: '',
@@ -121,7 +124,8 @@ var BipDetailPage = /** @class */ (function () {
             _this.storage.set('tarjetas', _this.bip_storage)
                 .then(function (response) { return console.log(response); }, function (error) { return console.log(error); });
         }, function (error) {
-            console.log(error);
+            _this.splashScreen.hide();
+            _this.messenger.print('El número ingresado no existe o no es válido');
             _this.navCtrl.pop();
         });
     };
@@ -140,12 +144,16 @@ var BipDetailPage = /** @class */ (function () {
     };
     BipDetailPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-bip-detail',template:/*ion-inline-start:"/home/mbeltran/public_html/simplebip/src/pages/bip-detail/bip-detail.html"*/'<!--\n  Generated template for the BipDetailPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Simple bip!</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n	<ion-card>\n		<ion-card-header>\n			Estado Tarjeta bip!\n		</ion-card-header>\n		<ion-list>\n			<ion-item>\n				<ion-icon name="subway"></ion-icon> {{item.id}}\n			</ion-item>\n			<ion-item>\n				 <ion-icon name="logo-usd"></ion-icon> {{item.saldoTarjeta}}\n			</ion-item>\n			<ion-item>\n				<ion-icon name="stats"></ion-icon> {{item.estadoContrato}}\n			</ion-item>\n			<ion-item>\n				<ion-icon name="calendar"></ion-icon> {{item.fechaSaldo}}\n			</ion-item>\n			<ion-item>\n				<ion-icon name="stopwatch"></ion-icon> {{item.fecha_consulta}}\n			</ion-item>\n		</ion-list>\n	</ion-card>\n</ion-content>'/*ion-inline-end:"/home/mbeltran/public_html/simplebip/src/pages/bip-detail/bip-detail.html"*/,
+            selector: 'page-bip-detail',template:/*ion-inline-start:"/home/mbeltran/public_html/bip/src/pages/bip-detail/bip-detail.html"*/'<!--\n  Generated template for the BipDetailPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Simple bip!</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n	<ion-card>\n		<ion-card-header>\n			Estado Tarjeta bip!\n		</ion-card-header>\n		<ion-list>\n			<ion-item>\n				<ion-icon name="subway"></ion-icon> {{item.id}}\n			</ion-item>\n			<ion-item>\n				 <ion-icon name="logo-usd"></ion-icon> {{item.saldoTarjeta}}\n			</ion-item>\n			<ion-item>\n				<ion-icon name="stats"></ion-icon> {{item.estadoContrato}}\n			</ion-item>\n			<ion-item>\n				<ion-icon name="calendar"></ion-icon> {{item.fechaSaldo}}\n			</ion-item>\n			<ion-item>\n				<ion-icon name="stopwatch"></ion-icon> {{item.fecha_consulta}}\n			</ion-item>\n		</ion-list>\n	</ion-card>\n</ion-content>'/*ion-inline-end:"/home/mbeltran/public_html/bip/src/pages/bip-detail/bip-detail.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_api_api__["a" /* ApiProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_api_api__["a" /* ApiProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__ionic_native_splash_screen__["a" /* SplashScreen */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ionic_native_splash_screen__["a" /* SplashScreen */]) === "function" && _e || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_2__providers_api_api__["a" /* ApiProvider */],
+            __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */],
+            __WEBPACK_IMPORTED_MODULE_4__ionic_native_splash_screen__["a" /* SplashScreen */],
+            __WEBPACK_IMPORTED_MODULE_5__providers_message_message__["a" /* MessageProvider */]])
     ], BipDetailPage);
     return BipDetailPage;
-    var _a, _b, _c, _d, _e;
 }());
 
 //# sourceMappingURL=bip-detail.js.map
